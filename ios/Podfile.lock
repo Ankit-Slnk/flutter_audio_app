@@ -1,0 +1,57 @@
+PODS:
+  - audio_manager (0.0.1):
+    - Flutter
+  - connectivity (0.0.1):
+    - Flutter
+    - Reachability
+  - Flutter (1.0.0)
+  - fluttertoast (0.0.2):
+    - Flutter
+    - Toast
+  - move_to_background (0.0.1):
+    - Flutter
+  - "permission_handler (5.1.0+2)":
+    - Flutter
+  - Reachability (3.2)
+  - Toast (4.0.0)
+
+DEPENDENCIES:
+  - audio_manager (from `.symlinks/plugins/audio_manager/ios`)
+  - connectivity (from `.symlinks/plugins/connectivity/ios`)
+  - Flutter (from `Flutter`)
+  - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - move_to_background (from `.symlinks/plugins/move_to_background/ios`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
+
+SPEC REPOS:
+  trunk:
+    - Reachability
+    - Toast
+
+EXTERNAL SOURCES:
+  audio_manager:
+    :path: ".symlinks/plugins/audio_manager/ios"
+  connectivity:
+    :path: ".symlinks/plugins/connectivity/ios"
+  Flutter:
+    :path: Flutter
+  fluttertoast:
+    :path: ".symlinks/plugins/fluttertoast/ios"
+  move_to_background:
+    :path: ".symlinks/plugins/move_to_background/ios"
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
+
+SPEC CHECKSUMS:
+  audio_manager: 59466b2ea5552ebdcba8106796f09b9357ef12e0
+  connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
+  move_to_background: 39a5b79b26d577b0372cbe8a8c55e7aa9fcd3a2d
+  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+
+PODFILE CHECKSUM: 78de9849d53c630c3e829f53b8c0a93b0f72c3b4
+
+COCOAPODS: 1.11.2
