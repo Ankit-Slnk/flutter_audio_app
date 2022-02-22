@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
               item.url,
               title: item.trackName,
               desc: item.albumName,
-              coverUrl: "",
+              coverUrl: "https://dummyimage.com/300/09f/fff.png",
             ),
           ));
       if (_list.isNotEmpty) AudioManager.instance.audioList = _list;

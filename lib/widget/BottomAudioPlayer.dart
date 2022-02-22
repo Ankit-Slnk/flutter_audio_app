@@ -20,6 +20,7 @@ class _BottomAudioPlayerState extends State<BottomAudioPlayer> {
   AudioPlayback audioPlayback;
 
   updatePlayback() {
+    widget.callback();
     if (audioSequencesListBloc.audioSequencesList.stream.value.length > 0) {
       audioPlayback = audioSequencesListBloc
           .audioSequencesList.stream.value[AudioManager.instance.curIndex];
@@ -103,7 +104,6 @@ class _BottomAudioPlayerState extends State<BottomAudioPlayer> {
               );
               _notify();
               updatePlayback();
-              widget.callback();
             },
             child: Container(
               decoration: BoxDecoration(

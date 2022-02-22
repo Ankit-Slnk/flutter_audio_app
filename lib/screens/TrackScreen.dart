@@ -1,4 +1,5 @@
 import 'package:audio_demo/models/AudioPlayback.dart';
+import 'package:audio_demo/utility/AudioIsPlayingBloc.dart';
 import 'package:audio_demo/utility/AudioSequencesListBloc.dart';
 import 'package:audio_demo/widget/BottomAudioPlayer.dart';
 import 'package:audio_manager/audio_manager.dart';
@@ -19,6 +20,7 @@ class _TrackScreenState extends State<TrackScreen> {
     "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_2MG.mp3",
     "https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_5MG.mp3"
   ];
+  bool isCurrentPlaying = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,11 @@ class _TrackScreenState extends State<TrackScreen> {
           ),
           BottomAudioPlayer(
             callback: () {
+              print("BottomAudioPlayer");
+              isCurrentPlaying = audioSequencesListBloc
+                          .audioSequencesList.stream.value.length !=
+                      0 &&
+                  AudioManager.instance.isPlaying;
               _notify();
             },
           )
@@ -45,15 +52,49 @@ class _TrackScreenState extends State<TrackScreen> {
     return ListView.builder(
       itemCount: urls.length,
       itemBuilder: (context, index) {
-        return ListTile(
-          leading: CircleAvatar(
-            radius: 25,
-            backgroundImage: AssetImage("assets/dummy.png"),
-          ),
-          title: Text("Track " + (index + 1).toString()),
+        return GestureDetector(
           onTap: () {
-            playAudio(index);
+            if (isCurrentPlaying && AudioManager.instance.curIndex == index) {
+              AudioManager.instance.toPause();
+              _notify();
+            } else {
+              playAudio(index);
+            }
           },
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              vertical: 8,
+              horizontal: 16,
+            ),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: 25,
+                  backgroundImage: AssetImage("assets/dummy.png"),
+                ),
+                SizedBox(
+                  width: 16,
+                ),
+                Expanded(
+                  child: Text(
+                    "Track " + (index + 1).toString(),
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 16,
+                ),
+                isCurrentPlaying && AudioManager.instance.curIndex == index
+                    ? CircleAvatar(
+                        radius: 5,
+                        backgroundColor: Colors.black,
+                      )
+                    : Container()
+              ],
+            ),
+          ),
         );
       },
     );
@@ -73,6 +114,7 @@ class _TrackScreenState extends State<TrackScreen> {
     audioSequencesListBloc.audioSequencesList.sink.add(audioList);
     await Future.delayed(Duration(milliseconds: 500));
     await AudioManager.instance.play(index: index);
+    await Future.delayed(Duration(milliseconds: 1000));
     _notify();
   }
 
